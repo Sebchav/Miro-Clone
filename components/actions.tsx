@@ -15,10 +15,11 @@ interface ActionsProps {
 }
 
 import React from 'react'
-import { Link2, Trash2 } from "lucide-react";
+import { Link2, Pencil, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { api } from "@/convex/_generated/api";
 import { Button } from "./ui/button";
+import { useRenameModal } from "@/store/use-rename-modal";
 
 const Actions = ({
     children,
@@ -28,6 +29,7 @@ const Actions = ({
     title
 }: ActionsProps) => {
 
+    const { onOpen } = useRenameModal();
     const { mutate, pending } = useApiMutation(api.board.remove)
 
     const onCopyLink = () => {
@@ -66,6 +68,14 @@ const Actions = ({
             >
                 <Link2 className="h-4 w-4 mr-2"/>
                 Copy Board Link
+            </DropdownMenuItem>
+
+            <DropdownMenuItem
+                onClick={()=> onOpen(id, title)}
+                className="p-3 cursor-pointer"
+            >
+                <Pencil className="h-4 w-4 mr-2"/>
+                Rename
             </DropdownMenuItem>
 
             <ConfirmModal
