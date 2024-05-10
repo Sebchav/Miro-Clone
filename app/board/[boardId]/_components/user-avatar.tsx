@@ -15,7 +15,7 @@ const UserAvatar = ({
     borderColor
 }: UserAvatarProps) => {
   return (
-    <Hint label={"name" || "Teammate"} side="bottom" sideOffset={18}>
+    <Hint label={name || "Teammate"} side="bottom" sideOffset={18}>
         <Avatar
             className="h-8 w-8 border-2"
             style={{
